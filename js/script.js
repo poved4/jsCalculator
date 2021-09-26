@@ -1,8 +1,7 @@
-//https://www.youtube.com/watch?v=j59qQ7YWLxw
-
 class Calculator {
-    constructor (previosOperandTextElement, currentOperandTextElement) {
-        this.previosOperandText = previosOperandTextElement;
+    
+    constructor (previousOperandTextElement, currentOperandTextElement) {
+        this.previousOperandTextElement = previousOperandTextElement;
         this.currentOperandTextElement = currentOperandTextElement;
         this.clear();
     }
@@ -25,6 +24,7 @@ class Calculator {
     chooseOperation(operation) {
         if (this.currentOperand === '') return;
         if (this.previousOperand !== '') { this.compute(); }
+
         this.operation = operation;
         this.previousOperand = this.currentOperand;
         this.currentOperand = '';
@@ -34,12 +34,13 @@ class Calculator {
         let computation;
         const prev = parseFloat(this.previousOperand);
         const current = parseFloat(this.currentOperand);
-        if (isNan(prev) || isNan(current)) return 
+        if (isNaN(prev) || isNaN(current)) return 
+        
         switch (this.operation) { 
             case '+': computation = prev + current; break;
             case '-': computation = prev - current; break;
             case '*': computation = prev * current; break;
-            case '/': computation = prev / current; break;
+            case '÷': computation = prev / current; break;
             default: return;
         }
 
@@ -49,63 +50,70 @@ class Calculator {
     }
 
     getDisplayNumber(number) {
-        // const stringNumber = number.toString();
-        // const integerDigits = 
-
-        const floatNumber = parseFloat(number);
-        if (isNaN(floatNumber)) return ''
-        return number.toLocaleString('en');
+        const stringNumber = number.toString();
+        const integerDigits = parseFloat(stringNumber.split('.')[0]);
+        const decimalDigits = stringNumber.split('.')[1];
+        let integerDisplay;
+        if (isNaN(integerDigits)) {
+          integerDisplay = '';
+        } else {
+          integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 });
+        }
+        if (decimalDigits != null) {
+          return `${integerDisplay}.${decimalDigits}`;
+        } else {
+          return integerDisplay;
+        }
     }
 
     updateDisplay() {
-        this.currentOperandText.innerText = this.getDisplayNumber(this.currentOperand);
-
+        this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
         if (this.operation != null) {
-            this.previosOperandText.innerText =
-            `${this.previousOperand} ${this.operation}`;
+          this.previousOperandTextElement.innerText =
+            `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
+        } else {
+          this.previousOperandTextElement.innerText = '';
         }
-        // this.previousOperandText.innerText = this.previousOperand;
-        // console.log(this.previousOperandText);
     }
 }
 
-const numberButtons = document.querySelectorAll('[data-number]');
-const operationButtons = document.querySelectorAll('[data-operation]');
+const calculator = new Calculator(
+    document.querySelector('[data-previous-operand]'),
+    document.querySelector('[data-current-operand]')
+)
 
-const equalButton = document.querySelector('[data-equals]');
-const deleteButton = document.querySelector('[data-delete]');
-const allClearButton = document.querySelector('[data-all-clear]');
-
-const previosOperandTextElement = document.querySelector('[data-previous-operand]');
-const currentOperandTextElement = document.querySelector('[data-current-operand]');
-
-const calculator = new Calculator(previosOperandTextElement, currentOperandTextElement);
-
-numberButtons.forEach(button => {
+document.querySelectorAll('[data-number]')
+.forEach(button => {
     button.addEventListener('click', () => {
         calculator.appendNumber(button.innerText);
         calculator.updateDisplay();
     });
 });
-
-operationButtons.forEach(button => {
+  
+document.querySelectorAll('[data-operation]')
+.forEach(button => {
     button.addEventListener('click', () => {
-        calculator.chooseOperation(button.innerText);
-        calculator.updateDisplay();
+      calculator.chooseOperation(button.innerText);
+      calculator.updateDisplay();
     });
 });
-
-equalButton.addEventListener('click', button => {
+  
+document.querySelector('[data-equals]')
+.addEventListener('click', button => {
     calculator.compute();
     calculator.updateDisplay();
 });
-
-allClearButton.addEventListener('click', button => {
+  
+document.querySelector('[data-all-clear]')
+.addEventListener('click', button => {
     calculator.clear();
     calculator.updateDisplay();
 });
-
-deleteButton.addEventListener('click', button => {
+  
+document.querySelector('[data-delete]')
+.addEventListener('click', button => {
     calculator.delete();
     calculator.updateDisplay();
 });
+
+//https://www.youtube.com/watch?v=j59qQ7YWLxw
