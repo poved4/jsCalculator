@@ -78,11 +78,11 @@ class Calculator {
 }
 
 const calculator = new Calculator(
-    document.querySelector('[data-previous-operand]'),
-    document.querySelector('[data-current-operand]')
+    document.querySelector('.data-previous-operand'),
+    document.querySelector('.data-current-operand')
 )
 
-document.querySelectorAll('[data-number]')
+document.querySelectorAll('.data-number')
 .forEach(button => {
     button.addEventListener('click', () => {
         calculator.appendNumber(button.innerText);
@@ -90,7 +90,7 @@ document.querySelectorAll('[data-number]')
     });
 });
   
-document.querySelectorAll('[data-operation]')
+document.querySelectorAll('.data-operation')
 .forEach(button => {
     button.addEventListener('click', () => {
       calculator.chooseOperation(button.innerText);
@@ -98,19 +98,19 @@ document.querySelectorAll('[data-operation]')
     });
 });
   
-document.querySelector('[data-equals]')
+document.querySelector('.data-equals')
 .addEventListener('click', button => {
     calculator.compute();
     calculator.updateDisplay();
 });
   
-document.querySelector('[data-all-clear]')
+document.querySelector('.data-all-clear')
 .addEventListener('click', button => {
     calculator.clear();
     calculator.updateDisplay();
 });
   
-document.querySelector('[data-delete]')
+document.querySelector('.data-delete')
 .addEventListener('click', button => {
     calculator.delete();
     calculator.updateDisplay();
