@@ -11,30 +11,62 @@
 </head>
 
 <body>
-    <div class="calculator-grid">
-        <div class="output">
-            <div class="previous-operand data-previous-operand"></div>
-            <div class="current-operand data-current-operand"></div>
+  <div class="calculator-grid">
+    <div>
+      <form name="Calculadora">
+        <div>
+          <input type="text" class="output" name="txtboxnros" value="0" disabled>
         </div>
-        <button class="span-two data-all-clear">AC</button>
-        <button class="data-delete">DEL</button>
-        <button class="data-operation">÷</button>
-        <button class="data-number">1</button>
-        <button class="data-number">2</button>
-        <button class="data-number">3</button>
-        <button class="data-operation" >*</button>
-        <button class="data-number">4</button>
-        <button class="data-number">5</button>
-        <button class="data-number">6</button>
-        <button class="data-operation">+</button>
-        <button class="data-number">7</button>
-        <button class="data-number">8</button>
-        <button class="data-number">9</button>
-        <button class="data-operation">-</button>
-        <button class="data-number">.</button>
-        <button class="data-number">0</button>
-        <button class="span-two data-equals">=</button>
+        <div class="buttons">
+          <input type="button" value="1" onclick="ingresarnumero(this.value)">
+          <input type="button" value="2" onclick="ingresarnumero(this.value)">
+          <input type="button" value="3" onclick="ingresarnumero(this.value)">
+          <input type="button" value="+" onclick="ingresaoperacion(this.value)">
+          <input type="button" value="-" onclick="ingresaoperacion(this.value)">
+  
+          <input type="button" value="4" onclick="ingresarnumero(this.value)">
+          <input type="button" value="5" onclick="ingresarnumero(this.value)">
+          <input type="button" value="6" onclick="ingresarnumero(this.value)">
+          <input type="button" value="*" onclick="ingresaoperacion(this.value)">
+          <input type="button" value="/" onclick="ingresaoperacion(this.value)">
+  
+          <input type="button" value="7" onclick="ingresarnumero(this.value)">
+          <input type="button" value="8" onclick="ingresarnumero(this.value)">
+          <input type="button" value="9" onclick="ingresarnumero(this.value)">
+  
+          <input type="button" value="0" onclick="ingresarnumero(this.value)"0>
+          <input type="button" value="." onclick="ingresarnumero(this.value)">
+          <input type="button" value="C" onclick="limpiar()">
+          <input type="button" class="span-two" value="=" onclick="resultado()">
+        </div>
+      </form>
     </div>
+  </div>
+
+  <!-- <div class="calculator-grid">
+    <div class="output">
+      <div class="previous-value"></div>
+      <div class="current-value"></div>
+    </div>
+    <input type=button class="span-two all-clear" value="AC" id="all-clear">
+    <input type=button class="delete" value="DEL" id="delete">
+    <input type=button class="operation" value="÷" id="divide">
+    <input type=button class="number" value="1" id="one">
+    <input type=button class="number" value="2" id="two">
+    <input type=button class="number" value="3" id="three">
+    <input type=button class="operation" value="*" id="multiply">
+    <input type=button class="number" value="4" id="four">
+    <input type=button class="number" value="5" id="five">
+    <input type=button class="number" value="6" id="six">
+    <input type=button class="operation" value="+" id="plus">
+    <input type=button class="number" value="7" id="seven">
+    <input type=button class="number" value="8" id="eight">
+    <input type=button class="number" value="9" id="nine">
+    <input type=button class="operation" value="-" id="menus">
+    <input type=button class="number" value="0" id="zero">
+    <input type=button class="number" value="." id="coma">
+    <input type=button class="span-two result" value="=" id="equal">
+  </div> -->
 </body>
 
 </html>
